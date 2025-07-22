@@ -1,7 +1,6 @@
 _tasks:
   - make install
-  - make lint
-  - make test
+
 _templates_suffix: .jinja
 _envops:
   block_start_string: "{%"
