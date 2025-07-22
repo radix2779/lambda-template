@@ -33,19 +33,6 @@ aws_region:
     - eu-west-1
     - ap-southeast-1
 
-shared_infra_state_bucket:
-  type: str
-  help: "S3 bucket containing the shared infrastructure Terraform state"
-  validator: >-
-    {% if not (shared_infra_state_bucket | regex_search('^[a-z0-9][a-z0-9.-]*[a-z0-9]$')) %}
-    Invalid S3 bucket name format
-    {% endif %}
-
-shared_infra_state_key:
-  type: str
-  help: "State key for shared infrastructure"
-  default: "shared-infra/terraform.tfstate"
-
 github_repo:
   type: str
   help: "GitHub repository name"
