@@ -1,11 +1,10 @@
-import { APIGatewayProxyEvent, APIGatewayProxyResult, Context } from 'aws-lambda';
-
-interface LambdaResponse {
-  statusCode: number;
-  headers?: Record<string, string>;
-  body: string;
-}
-
+import {
+  APIGatewayProxyEvent,
+  APIGatewayProxyEventPathParameters,
+  APIGatewayProxyEventQueryStringParameters,
+  APIGatewayProxyResult,
+  Context,
+} from 'aws-lambda';
 
 /**
  * API Gateway Lambda handler
@@ -18,7 +17,7 @@ export const handler = async (
   console.log('Context:', JSON.stringify(context, null, 2));
 
   try {
-    const { httpMethod, path, pathParameters, queryStringParameters, body } = event;
+    const { httpMethod, pathParameters, queryStringParameters, body } = event;
 
     // Basic routing based on HTTP method
     switch (httpMethod) {
@@ -43,8 +42,8 @@ export const handler = async (
  * Handle GET requests
  */
 const handleGet = async (
-  pathParameters: Record<string, string> | null,
-  queryStringParameters: Record<string, string> | null
+  pathParameters: APIGatewayProxyEventPathParameters | null,
+  queryStringParameters: APIGatewayProxyEventQueryStringParameters | null
 ): Promise<APIGatewayProxyResult> => {
   return createResponse(200, {
     message: 'Hello from {{ service_name }}!',
@@ -75,7 +74,7 @@ const handlePost = async (body: string | null): Promise<APIGatewayProxyResult> =
  * Handle PUT requests
  */
 const handlePut = async (
-  pathParameters: Record<string, string> | null,
+  pathParameters: APIGatewayProxyEventPathParameters | null,
   body: string | null
 ): Promise<APIGatewayProxyResult> => {
   const data = body ? JSON.parse(body) : {};
@@ -94,7 +93,7 @@ const handlePut = async (
  * Handle DELETE requests
  */
 const handleDelete = async (
-  pathParameters: Record<string, string> | null
+  pathParameters: APIGatewayProxyEventPathParameters | null
 ): Promise<APIGatewayProxyResult> => {
   return createResponse(200, {
     message: 'Resource deleted',

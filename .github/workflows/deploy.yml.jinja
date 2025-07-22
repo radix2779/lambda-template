@@ -8,7 +8,6 @@ on:
   workflow_dispatch:
 
 env:
-  AWS_REGION: {{ aws_region }}
   LAMBDA_FUNCTION_NAME: {{ service_name }}
 
 jobs:
@@ -64,7 +63,6 @@ jobs:
       uses: aws-actions/configure-aws-credentials@v4
       with:
         role-to-assume: aws_role_arn
-        aws-region: ${{ aws_region }}
     
     - name: Upload Lambda package to S3
       run: |

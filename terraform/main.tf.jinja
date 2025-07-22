@@ -11,16 +11,42 @@ terraform {
 }
 
 provider "aws" {
-  region = var.region
+  alias  = "us-east-1"
+  region = "us-east-1"
 }
 
-module "lambda_function" {
-  source         = "github.com/radix2779/lambda-api-infra"
-  for_each       = var.region
+provider "aws" {
+  alias  = "us-west-2"
+  region = "us-west-2"
+}
+
+
+module "lambda_function_us-east-1" {
+  source         = "../../../cloud-infra"
   account_id     = var.account_id
   project_prefix = var.project_prefix
-  region         = var.region
+  region         = "us-east-1"
   source_dir     = "${path.module}/../dist"
   output_path    = "${path.module}/../dist/deployment.zip"
-  api_path       = each.value
+  api_path       = var.project_prefix
+
+  providers = {
+    aws = aws.us-east-1
+  }
+
+}
+
+module "lambda_function_us-west-2" {
+  source         = "../../../cloud-infra"
+  account_id     = var.account_id
+  project_prefix = var.project_prefix
+  region         = "us-west-2"
+  source_dir     = "${path.module}/../dist"
+  output_path    = "${path.module}/../dist/deployment.zip"
+  api_path       = var.project_prefix
+
+  providers = {
+    aws = aws.us-west-2
+  }
+
 }
