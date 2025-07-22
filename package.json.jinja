@@ -1,13 +1,13 @@
 {
-  "name": "{{ service_name }}",
+  "name": "user-service",
   "version": "1.0.0",
-  "description": "{{ service_description }}",
+  "description": "A serverless Lambda function built with TypeScript",
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
     "clean": "rm -rf dist",
-    "package": "npm run clean && npm run build && cd dist && zip -r ../{{ service_name }}.zip .",
+    "package": "npm run clean && npm run build && cd dist && zip -r ../user-service.zip .",
     "local": "npm run build && node -e \"console.log(require('./dist/index').handler({}, {}))\"",
     "test": "jest",
     "test:watch": "jest --watch",
@@ -20,15 +20,16 @@
     "@types/aws-lambda": "^8.10.140"
   },
   "devDependencies": {
-    "@types/node": "^20.14.9",
-    "typescript": "^5.5.3",
     "@types/jest": "^29.5.12",
-    "jest": "^29.7.0",
-    "ts-jest": "^29.1.5",
+    "@types/node": "^20.14.9",
     "@typescript-eslint/eslint-plugin": "^7.16.0",
     "@typescript-eslint/parser": "^7.16.0",
+    "aws-sdk": "^2.1692.0",
     "eslint": "^8.57.0",
-    "prettier": "^3.3.2"
+    "jest": "^29.7.0",
+    "prettier": "^3.3.2",
+    "ts-jest": "^29.1.5",
+    "typescript": "^5.5.3"
   },
   "keywords": [
     "aws",

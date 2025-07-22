@@ -7,6 +7,6 @@ jest.mock('aws-sdk', () => ({
 }));
 
 // Set environment variables for testing
-process.env.AWS_REGION = '{{ aws_region }}';
-process.env.NODE_ENV = 'test';
+process.env['AWS_REGION'] = '{{ aws_region }}';
+process.env['NODE_ENV'] = 'test';
 

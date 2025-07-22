@@ -1,14 +1,14 @@
 install:
-	@pnpm install
+	@npm install
 
 dev:
-	@pnpm dev
+	@npm dev
 
 test:
-	@pnpm test
+	@npm test
 
 lint:
-	@pnpm lint
+	@npm lint
 
 build-image:
 	docker build .
