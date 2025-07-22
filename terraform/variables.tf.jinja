@@ -1,0 +1,14 @@
+variable "region" {
+  description = "The AWS region to deploy the resources"
+  default     = "${{ aws_region }}"
+}
+
+variable "account_id" {
+  description = "The AWS account ID"
+  default     = "143913070220"
+}
+
+variable "project_prefix" {
+  description = "The prefix for all resources in this project"
+  default     = "${{service_name}}"
+}
