@@ -6,7 +6,7 @@ const mockContext: Context = {
   callbackWaitsForEmptyEventLoop: false,
   functionName: '{{ service_name }}',
   functionVersion: '$LATEST',
-  invokedFunctionArn: 'arn:aws:lambda:{{ aws_region }}:123456789012:function:{{ service_name }}',
+  invokedFunctionArn: 'arn:aws:lambda:us-east-1:123456789012:function:{{ service_name }}',
   memoryLimitInMB: '{{ lambda_memory }}',
   awsRequestId: 'test-request-id',
   logGroupName: '/aws/lambda/{{ service_name }}',

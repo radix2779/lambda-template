@@ -22,30 +22,10 @@ service_description:
   help: "Brief description of the Lambda service"
   default: "A serverless Lambda function built with TypeScript"
 
-# Infrastructure settings
-aws_region:
-  type: str
-  help: "AWS region for deployment"
-  default: "us-east-1"
-  choices:
-    - us-east-1
-    - us-west-2
-    - eu-west-1
-    - ap-southeast-1
-
 github_repo:
   type: str
   help: "GitHub repository name"
   default: "{{ service_name }}"
-
-# Lambda configuration
-lambda_runtime:
-  type: str
-  help: "Node.js runtime version"
-  default: "nodejs20.x"
-  choices:
-    - nodejs18.x
-    - nodejs20.x
 
 lambda_memory:
   type: int
@@ -54,13 +34,4 @@ lambda_memory:
   validator: >-
     {% if lambda_memory < 128 or lambda_memory > 10240 %}
     Memory must be between 128 and 10240 MB
-    {% endif %}
-
-lambda_timeout:
-  type: int
-  help: "Lambda timeout (seconds)"
-  default: 30
-  validator: >-
-    {% if lambda_timeout < 1 or lambda_timeout > 900 %}
-    Timeout must be between 1 and 900 seconds
     {% endif %}

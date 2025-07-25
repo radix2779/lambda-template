@@ -29,11 +29,9 @@ The template will ask you for:
 | ----------------------- | --------------------------- | ---------------------------------------------------- |
 | `service_name`          | Lambda service name         | `user-service`                                       |
 | `service_description`   | Brief description           | `Manages user accounts and profiles`                 |
-| `aws_region`            | AWS deployment region       | `us-east-1`                                          |
 | `github_repo`           | Repository name             | `user-service`                                       |
 | `aws_role_arn`          | GitHub Actions AWS role ARN | `arn:aws:iam::123456789012:role/github-actions-role` |
 | `lambda_memory`         | Memory allocation (MB)      | `256`                                                |
-| `lambda_timeout`        | Timeout (seconds)           | `30`                                                 |
 | `api_path`              | API Gateway path            | `/users`                                             |
 | `environment_variables` | Comma-separated env vars    | `DATABASE_URL,API_KEY`                               |
 
@@ -264,20 +262,6 @@ export const handler = async (
         body: JSON.stringify({ error: "Method not allowed" }),
       };
   }
-};
-```
-
-### Database Integration
-
-```typescript
-import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
-
-const dynamodb = new DynamoDBClient({ region: process.env.AWS_REGION });
-
-export const handler = async (
-  event: APIGatewayProxyEvent
-): Promise<APIGatewayProxyResult> => {
-  // Your database logic here
 };
 ```
 
