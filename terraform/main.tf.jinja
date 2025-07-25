@@ -22,7 +22,7 @@ provider "aws" {
 
 
 module "lambda_function_us-east-1" {
-  source         = "../../../cloud-infra"
+  source         = "github.com/radix2779/lambda-api-infra"
   account_id     = var.account_id
   project_prefix = var.project_prefix
   region         = "us-east-1"
@@ -37,7 +37,7 @@ module "lambda_function_us-east-1" {
 }
 
 module "lambda_function_us-west-2" {
-  source         = "../../../cloud-infra"
+  source         = "github.com/radix2779/lambda-api-infra"
   account_id     = var.account_id
   project_prefix = var.project_prefix
   region         = "us-west-2"
